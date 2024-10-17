@@ -1,6 +1,7 @@
 package web.PP_311.service;
 
 
+import web.PP_311.model.User;
 
 import java.util.List;
 

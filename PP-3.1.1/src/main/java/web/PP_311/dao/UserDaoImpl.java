@@ -3,6 +3,9 @@ package web.PP_311.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import web.PP_311.model.User;
+
+import java.util.List;
 
 
 @Repository
@@ -15,6 +18,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsers() {
         return entityManager.createQuery("SELECT u FROM User u ORDER BY u.id", User.class).getResultList();
     }
+
     @Override
     public User getUserById(Long id) {
         return entityManager.find(User.class, id);

@@ -1,5 +1,6 @@
 package web.PP_311.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import web.PP_311.model.User;
 import web.PP_311.service.UserService;
 
+import java.util.List;
 
 
 @Controller
@@ -32,7 +35,7 @@ public class UserController {
 
     @GetMapping("/edit")
     public String addUser(@ModelAttribute("user") User user, Model model) {
-        if(user.getId() != null) {
+        if (user.getId() != null) {
             model.addAttribute("user", userService.getUserById(user.getId()));
         }
         return "edit";
@@ -54,7 +57,7 @@ public class UserController {
 
     @PostMapping("/del")
     public String deleteUser(@ModelAttribute("user") User user) {
-            userService.removeUserById(user.getId());
+        userService.removeUserById(user.getId());
         return "redirect:/users";
     }
 }
