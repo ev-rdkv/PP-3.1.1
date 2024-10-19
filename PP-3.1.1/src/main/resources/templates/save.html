@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Edit</title>
+    <title>Save</title>
 </head>
 <body>
 <h1>User editor</h1>
 
-<form th:method="POST" th:action="@{/users/edit}" th:object="${user}">
+<form th:method="POST" th:action="@{/users/save}" th:object="${user}">
     <table>
         <input type="hidden" th:field="*{id}" id="id">
+
         <tr>
             <td>
                 <label for="name">Enter name: </label>
@@ -37,6 +38,7 @@
                 <input type="hidden" th:errors="*{age}"/>
             </td>
         </tr>
+
     </table>
     <input type="submit" value="Accept"/>
 </form>

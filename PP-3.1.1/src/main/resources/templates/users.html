@@ -33,13 +33,15 @@
         <th>Age</th>
         <th style="border: 0px;"></th>
     </tr>
+
     <tr th:each="user : ${users}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.lastName}"></td>
         <td th:text="${user.age}"></td>
+
         <td style="border: none; padding-right: 1px;">
-            <form action="/users/edit" method="get">
+            <form action="/users/update" method="get">
                 <input type="hidden" name="id" th:value="${user.id}">
                 <input type="submit" value="change"/>
             </form>
@@ -51,9 +53,10 @@
             </form>
         </td>
     </tr>
+
 </table>
 <br>
-<form action="users/edit" method="get">
+<form action="/users/save" method="get">
     <input type="submit" value="New user"/>
 </form>
 </body>

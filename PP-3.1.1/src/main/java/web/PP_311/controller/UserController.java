@@ -33,26 +33,44 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/save")
     public String addUser(@ModelAttribute("user") User user, Model model) {
         if (user.getId() != null) {
             model.addAttribute("user", userService.getUserById(user.getId()));
         }
-        return "edit";
+        return "save";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/save")
     public String save(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "edit";
+            return "save";
         } else {
             if (user.getId() == null) {
                 userService.saveUser(user);
-            } else {
+            }
+        }
+        return "redirect:/users";
+    }
+
+    @GetMapping("/update")
+    public String updateUser(@ModelAttribute("user") User user, Model model) {
+        if (user.getId() != null) {
+            model.addAttribute("user", userService.getUserById(user.getId()));
+        }
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "update";
+        } else {
+            if (user.getId() != null) {
                 userService.updateUser(user);
             }
-            return "redirect:/users";
         }
+        return "redirect:/users";
     }
 
     @PostMapping("/del")
